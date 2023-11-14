@@ -1,0 +1,35 @@
+replicaCount: 1
+image: confluentinc/cp-kafka-rest
+imageTag:  7.4.3
+imagePullPolicy: IfNotPresent
+imagePullSecrets:
+servicePort: 8082
+heapOptions: "-Xms512M -Xmx512M"
+resources: {}
+podAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+configurationOverrides:
+customEnv: {}
+jmx:
+  port: 5555
+prometheus:
+  jmx:
+    enabled: false
+    image: solsson/kafka-prometheus-jmx-exporter@sha256
+    imageTag: 6f82e2b0464f50da8104acd7363fb9b995001ddff77d248379f8788e78946143
+    imagePullPolicy: IfNotPresent
+    port: 5556
+    resources: {}
+external:
+  enabled: false
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  port: 8082
+cp-zookeeper:
+  url: ""
+cp-schema-registry:
+  url: ""
+cp-kafka:
+  bootstrapServers: ""

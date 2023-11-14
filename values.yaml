@@ -1,0 +1,59 @@
+## ------------------------------------------------------
+## Zookeeper
+## ------------------------------------------------------
+cp-zookeeper:
+  enabled: true
+  servers: 3
+  image: confluentinc/cp-zookeeper
+  imageTag: 7.4.3
+  imagePullSecrets:
+  heapOptions: "-Xms512M -Xmx512M"
+  persistence:
+    enabled: true
+    dataDirSize: 10Gi
+    ataLogDirSize: 10Gi
+  securityContext: 
+    runAsUser: 0
+  resources: {}
+
+## ------------------------------------------------------
+## Kafka
+## ------------------------------------------------------
+cp-kafka:
+  enabled: true
+  brokers: 3
+  image: confluentinc/cp-enterprise-kafka
+  imageTag: 7.4.3
+  imagePullSecrets:
+  heapOptions: "-Xms512M -Xmx512M"
+  persistence:
+    enabled: true
+    size: 5Gi
+    disksPerBroker: 1
+  resources: {}
+  securityContext: 
+    runAsUser: 0
+
+## ------------------------------------------------------
+## REST Proxy
+## ------------------------------------------------------
+cp-kafka-rest:
+  enabled: true
+  image: confluentinc/cp-kafka-rest
+  imageTag: 7.4.3
+  imagePullSecrets:
+  heapOptions: "-Xms512M -Xmx512M"
+  resources: {}
+
+
+## ------------------------------------------------------
+## Control Center
+## ------------------------------------------------------
+cp-control-center:
+  enabled: true
+  image: confluentinc/cp-enterprise-control-center
+  imageTag: 7.4.3
+  imagePullSecrets:
+  heapOptions: "-Xms512M -Xmx512M"
+  resources: {}
+
